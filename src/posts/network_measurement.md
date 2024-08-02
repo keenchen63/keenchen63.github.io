@@ -41,7 +41,7 @@ cover: https://8635674.fs1.hubspotusercontent-na1.net/hub/8635674/hubfs/checking
 ### 确定测试目标
 如下图网络环境，需测试**接入层**至**核心层**的有线无线网络性能，则需将服务器放置在**核心层**。
 
-<img src="https://s2.loli.net/2024/07/21/nDtTGmBNpa37Yyg.png" alt="测试拓扑" width="400">
+<img src="https://s21.ax1x.com/2024/07/21/pk7EnW8.png" alt="测试拓扑" width="400">
 
 ### 测试设备
 如测试10G网络，确保服务器及测试终端拥有足够处理性能，同时具备10G网络接入能力，尽量使用Linux系统进行测试；无线测试终端确保拥有高性能无线网卡，以尽可能消除测试终端的性能瓶颈。
@@ -68,7 +68,7 @@ iperf3 -s -D      ### 以服务端模式运行并开启进程守护
 ```
 如下图所示，iPerf3服务端以运行并默认监听5201端口
 
-<img src="https://s2.loli.net/2024/07/21/CYuDmLWKaHbclSz.jpg" alt="运行iPerf3服务端" width="600">
+<img src="https://s21.ax1x.com/2024/07/21/pk7EKSS.jpg" alt="运行iPerf3服务端" width="600">
 
 **Windows** *（官方不建议）*
 
@@ -84,7 +84,7 @@ iperf3 -s -D      ### 以服务端模式运行并开启进程守护
 ```
 如下图所示，iPerf3服务端以运行并默认监听5201端口
 
-<img src="https://s2.loli.net/2024/07/21/ZFhCu928tJvRSzm.jpg" alt="运行iPerf3服务端" width="600">
+<img src="https://s21.ax1x.com/2024/07/21/pk7EmJf.jpg" alt="运行iPerf3服务端" width="600">
 
 ______
 #### 客户端
@@ -103,7 +103,7 @@ iperf3 -c <Server_IP> -t 30 -f m  ### 指定测试持续时间为 30 秒，单�
 ```
 下图为TCP吞吐量测试结果，输出结果中包含多项参数指标：
 
-<img src="https://s2.loli.net/2024/07/21/DkM2OszpmLCnjYw.jpg" alt="TCP测试结果" width="700">
+<img src="https://s21.ax1x.com/2024/07/21/pk7EMQg.jpg" alt="TCP测试结果" width="700">
 
    - Interval：表示测试的时间段，从 0 到 5 秒，默认每隔 1 秒汇报一次结果;
    - Transfer：表示在单位时间内传输的数据总量;
@@ -119,7 +119,7 @@ iperf3 -c <Server_IP> -u -b 100M      ### UDP模式测试，指定目标带宽�
 ```
 下图为UDP抖动、丢包率测试结果，输出结果中包含多项参数指标：
 
-<img src="https://s2.loli.net/2024/07/21/q8wrmCF5lfGo31A.jpg" alt="UDP测试结果" width="700">
+<img src="https://s21.ax1x.com/2024/07/21/pk7EQyQ.jpg" alt="UDP测试结果" width="700">
 
    - Interval：表示测试的时间段，从 0 到 5 秒，默认每隔 1 秒汇报一次结果;
    - Transfer：表示在单位时间内传输的数据总量;
@@ -131,7 +131,7 @@ iperf3 -c <Server_IP> -u -b 100M      ### UDP模式测试，指定目标带宽�
 **移动端**
 - Android系统使用华为`CloudCamups APP`
 
-<img src="https://s2.loli.net/2024/07/21/9HLrAjDcQKzGYXW.jpg" alt="UDP测试结果" width="650">
+<img src="https://s21.ax1x.com/2024/08/02/pkjKNpF.jpg" alt="UDP测试结果" width="650">
 
 - iOS系统自行寻找兼容iPerf3的APP
 
@@ -152,7 +152,7 @@ ethr -s -ui       ### 以服务端模式运行ethr，并开启ui界面
 ```
 如下图所示，ethr服务端以运行并默认监听8888端口
 
-<img src="https://s2.loli.net/2024/07/21/OBRy6LZIbJtQFNd.jpg" alt="运行ethr服务端" width="700">
+<img src="https://s21.ax1x.com/2024/08/02/pkjKJYT.jpg" alt="运行ethr服务端" width="700">
 
 **Windows**
 - 从`https://github.com/microsoft/ethr/releases/latest/download/ethr_windows.zip`下载软件包
@@ -166,7 +166,7 @@ ethr -s           ### 以服务端模式运行ethr
 ```
 如下图所示，ethr服务端以运行并默认监听8888端口
 
-<img src="https://s2.loli.net/2024/07/21/iGDs4cUOrkHRMV3.jpg" alt="运行ethr服务端" width="670">
+<img src="https://s21.ax1x.com/2024/07/21/pk7E3es.jpg" alt="运行ethr服务端" width="670">
 
 #### 客户端
 **Linux / Windows**
@@ -178,7 +178,7 @@ ethr -c <Server_IP> -d 5s        ### 测试TCP吞吐量，维持时间5秒
 ```
 下图为TCP吞吐量测试结果，输出结果中包含多项参数指标：
 
-<img src="https://s2.loli.net/2024/07/21/p5TJnHdZYr8ysoU.jpg" alt="TCP测试结果" width="650">
+<img src="https://s21.ax1x.com/2024/08/02/pkjKYfU.jpg" alt="TCP测试结果" width="650">
 
    - Protocol：测试协议，默认为TCP，可通过`-p`参数指定
    - Interval：表示测试的时间段，从 0 到 5 秒，默认每隔 1 秒汇报一次结果
@@ -205,7 +205,7 @@ sudo docker run -d --name=speedtest -p 80:80 ghcr.io/librespeed/speedtest:latest
 - 访问http://<Server_ip>:80
 - 开始测速
 
-<img src="https://s2.loli.net/2024/07/21/anSkfzOgGEVBtxh.png" alt="Speedtest测试结果" width="700">
+<img src="https://s21.ax1x.com/2024/08/02/pkjKGkV.png" alt="Speedtest测试结果" width="700">
 
 ### 个人建议
 万兆网络测试建议服务端和客户端均使用**Linux**系统，经过反复测试，相同环境下，**Windows**在上述3个工具的测试结果均只达到**3G+bps/s**，**Linux**则均能接近**10Gbps/s**。实验不完全严谨，结论仅供参考。
