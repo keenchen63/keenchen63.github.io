@@ -155,7 +155,7 @@ ethr -s -ui       ### 以服务端模式运行ethr，并开启ui界面
 <img src="https://s21.ax1x.com/2024/08/02/pkjKJYT.jpg" alt="运行ethr服务端" width="700">
 
 **Windows**
-- 从`https://github.com/microsoft/ethr/releases/latest/download/ethr_windows.zip`下载软件包
+- 从https://github.com/microsoft/ethr/releases/latest/download/ethr_windows.zip下载软件包
 - 将压缩包内的exe文件解压并复制到目录`C:\Windows\System32`
 - 运行ethr服务端
 
