@@ -4,11 +4,11 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
-  hostname: "https://mister-hope.github.io",
+  hostname: "https://keenchen63.github.io",
 
   author: {
     name: "Keen",
-    url: "https://mister-hope.com",
+    url: "https://keenchen63.github.io",
   },
 
   iconAssets: "fontawesome-with-brands",
@@ -19,8 +19,9 @@ export default hopeTheme({
 
   docsDir: "src",
 
+  darkmode: "auto",
   // 导航栏
-  // navbar,
+  navbar: false,
 
   // 侧边栏
   sidebar,

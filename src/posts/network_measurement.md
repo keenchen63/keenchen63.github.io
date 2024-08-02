@@ -7,6 +7,7 @@ tag: [
    "打流",
    "iPerf",
 ]
+cover: https://8635674.fs1.hubspotusercontent-na1.net/hub/8635674/hubfs/checking-internet-speed-.jpeg?width=1800&name=checking-internet-speed-.jpeg
 ---
 
 # 网络性能测试的一些方法 & 工具
