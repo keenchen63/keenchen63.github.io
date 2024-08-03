@@ -4,11 +4,11 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default hopeTheme({
-  hostname: "https://keenchen63.github.io",
+  hostname: "https://blog.okeen.top",
 
   author: {
     name: "Keen",
-    url: "https://keenchen63.github.io",
+    url: "https://blog.okeen.top",
   },
 
   iconAssets: "fontawesome-with-brands",
