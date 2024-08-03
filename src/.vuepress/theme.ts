@@ -13,7 +13,7 @@ export default hopeTheme({
 
   iconAssets: "fontawesome-with-brands",
 
-  logo: "nav_blog.svg",
+  logo: "logo2.svg",
 
   // repo: "vuepress-theme-hope/vuepress-theme-hope",
 
@@ -21,7 +21,7 @@ export default hopeTheme({
 
   darkmode: "auto",
   // 导航栏
-  navbar: false,
+  navbar,
 
   // 侧边栏
   sidebar,

@@ -4,7 +4,7 @@ export default sidebar({
   "/": [
     "",
     {
-      text: "文章",
+      text: "博文",
       icon: "book",
       prefix: "posts/",
       children: "structure",
