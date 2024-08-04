@@ -32,7 +32,7 @@ export default hopeTheme({
 
   // 博客相关
   blog: {
-    avatar: "https://s21.ax1x.com/2024/08/01/pkXNdHg.jpg",
+    avatar: "imgs/pkXNdHg.jpg",
     description: "写点有的没的",
     // intro: "/intro.html",
     medias: {
