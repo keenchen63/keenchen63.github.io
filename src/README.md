@@ -4,7 +4,7 @@ layout: BlogHome
 hero: true
 icon: home
 title: 首页
-bgImage: imgs/pkXXPq1.jpg
+bgImage: imgs/IMG_20240804_135652.jpg
 #heroImage: 
 heroText: Keen's Blog
 heroFullScreen: false
