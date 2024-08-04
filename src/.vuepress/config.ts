@@ -11,7 +11,7 @@ export default defineUserConfig({
   base: "/",
   head:[
     [
-      'link',{ rel: 'icon', href:'/nav_blog.svg'}
+      'link',{ rel: 'icon', href:'/logo2.svg'}
     ]
   ],
   lang: "zh-CN",
