@@ -12,7 +12,6 @@ cover: https://8635674.fs1.hubspotusercontent-na1.net/hub/8635674/hubfs/checking
 
 # 网络性能测试的一些方法 & 工具
 
-
 ## 一、 意义
 测试网络性能
 
@@ -25,6 +24,7 @@ cover: https://8635674.fs1.hubspotusercontent-na1.net/hub/8635674/hubfs/checking
    - **定义**：实际在单位时间内传输的数据量，通常以每秒兆比特（Mbps）来表示。
    - **正常范围**：理想情况下接近带宽，但由于网络开销和其他因素，实际吞吐量通常比带宽低。
 
+<!-- more -->
 - 延迟（Latency）
    - **定义**：数据包从源端到达目的端所需的时间，通常以毫秒（ms）为单位。
    - **正常范围**：局域网（LAN）通常在1 ms到5 ms之间；广域网（WAN）可能在10 ms到100 ms或更高。

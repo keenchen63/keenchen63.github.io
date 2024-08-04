@@ -23,6 +23,7 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
 > - 开源：Zabbix是一个开源的监控系统，意味着它是免费的，并且源代码是公开的，可以自由地使用、修改和分发。
 > - 分布式：Zabbix支持分布式监控，这意味着可以将监控负载分散到多个Zabbix服务器上，从而实现更高的可扩展性和容错性。
 
+<!-- more -->
 <img src="https://s1.ax1x.com/2023/04/22/p9VcqII.jpg" alt="Banner" style="zoom:80%;float:left;" />
 
 

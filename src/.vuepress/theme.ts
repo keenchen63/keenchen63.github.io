@@ -62,7 +62,7 @@ export default hopeTheme({
       // Rss: "https://example.com",
       // Steam: "https://example.com",
       // Twitter: "https://example.com",
-      Wechat: "https://s21.ax1x.com/2024/08/01/pkXtPJI.jpg",
+      Wechat: "imgs/mmqrcode1722748810749.png",
       // Weibo: "https://example.com",
       // Whatsapp: "https://example.com",
       // Youtube: "https://example.com",
