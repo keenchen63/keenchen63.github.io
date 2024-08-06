@@ -10,9 +10,10 @@ export default defineUserConfig({
   }),
   base: "/",
   head:[
-    [
-      'link',{ rel: 'icon', href:'/logo2.svg'}
-    ]
+    ["link",{ rel: "icon", href: "/logo2.svg"}],
+    ["link",{ rel: "preconnect", href:"https://fonts.googleapis.com"}],
+    ["link",{ rel: "preconnect", href:"https://fonts.gstatic.com", crossorigin: ""}],
+    ["link",{ href:"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&display=swap", rel: "stylesheet"}],
   ],
   lang: "zh-CN",
   title: "Keen's Blog",
