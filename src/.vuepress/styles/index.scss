@@ -6,11 +6,15 @@
 
 .vp-article-excerpt {
     font-size: smaller;
-    color: rgb(88, 88, 98);
+    // color: rgb(88, 88, 98);
 }
 
+.vp-article-excerpt h2{
+    font-size: large;
+    font-weight: 400;
+}
 .theme-hope-content {
-    color: rgb(88, 88, 98);
+    // color: rgb(88, 88, 98);
     font-size: medium;
 }
 
@@ -20,13 +24,17 @@
 
 .vp-page-title h1 {
     font-size: x-large;
-    color: rgb(88, 88, 88);
+    // color: rgb(88, 88, 88);
 }
 
 .theme-hope-content h2 {
-    font-size: large;
+    font-size: larger;
 }
 
-.vp-toc-header {
-    color: rgb(88, 88, 98);
+.theme-hope-content h3 {
+    font-size: larger;
+}
+
+.theme-hope-content h4 {
+    font-size: medium;
 }

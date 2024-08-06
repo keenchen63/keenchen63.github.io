@@ -11,11 +11,11 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
 
 # Zabbix 基础介绍及安装部署
 
-### 一、为什么需要监控系统
+## 一、为什么需要监控系统
 
 监控系统可以实时监控和管理系统、网络设备、应用程序等，帮助运维管理员**及时发现和解决问题**，提高系统的可用性、安全性和性能，节约运维成本。
 
-### 二、什么是Zabbix
+## 二、什么是Zabbix
 
 > Zabbix 是一个**企业级**的**开源分布式**网络监控解决方案；可用于监视各种IT设备，包括服务器、网络设备、数据库、应用程序等。
 >
@@ -28,7 +28,7 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
 
 
 
-### 三、Zabbix的监控对象
+## 三、Zabbix的监控对象
 
 - 数据库：    MySQL、MariaDB、Oracle、SQL Server		agent
 - 应用程序：Nginx、Apache、IIS                                            agent
@@ -47,7 +47,7 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
 
 
 
-### 四、Zabbix基本架构
+## 四、Zabbix基本架构
 
 <img src="https://s1.ax1x.com/2023/04/22/p9VcOit.png" alt="架构图" style="zoom:50%;" />
 
@@ -59,9 +59,9 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
 
 
 
-### 五、安装Zabbix
+## 五、安装Zabbix
 
-#### 1.安装要求
+### 1.安装要求
 
 - 硬件配置
 
@@ -83,9 +83,9 @@ cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
   - macOS
   - 等类UNIX系统
 
-#### 2.安装Zabbix
+### 2.安装Zabbix
 
-##### Linux系统二进制包安装
+#### Linux系统二进制包安装
 
 进入Zabbix官网`https://www.zabbix.com/cn/download`，选在Zabbix版本及服务器平台等信息；
 
@@ -208,24 +208,24 @@ sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 
 在Web页面完成初始化向导，安装完成。
 
-##### Docker容器安装
+#### Docker容器安装
 
   时间有限，不展开，可参考官方文档。
 
 
 
-### 六、配置Zabbix
+## 六、配置Zabbix
 
-#### 1.登录和配置用户
+### 1.登录和配置用户
 
-- 使用超级管理员`Admin`及默认密码：`zabbix`登录<br>[![p9ZCjQP.png](https://s1.ax1x.com/2023/04/22/p9ZCjQP.png)](https://imgse.com/i/p9ZCjQP)
-- 在`管理 → 用户` 可查看用户信息，点击创建用户：<br>[![p9ZHUq1.png](https://s1.ax1x.com/2023/04/23/p9ZHUq1.png)](https://imgse.com/i/p9ZHUq1)
-- 输入用户名、密码，选择加入`Zabbix administrators`管理员群组:<br>[![p9ZPg0S.png](https://s1.ax1x.com/2023/04/22/p9ZPg0S.png)](https://imgse.com/i/p9ZPg0S)
-- 在权限页，选择`Admin role`，完成用户创建：<br>[![p9ZPhfs.png](https://s1.ax1x.com/2023/04/22/p9ZPhfs.png)](https://imgse.com/i/p9ZPhfs)
+- 使用超级管理员`Admin`及默认密码：`zabbix`登录<br>![](https://s1.ax1x.com/2023/04/22/p9ZCjQP.png)
+- 在`管理 → 用户` 可查看用户信息，点击创建用户：<br>![](https://s1.ax1x.com/2023/04/23/p9ZHUq1.png)
+- 输入用户名、密码，选择加入`Zabbix administrators`管理员群组:<br>![](https://s1.ax1x.com/2023/04/22/p9ZPg0S.png)
+- 在权限页，选择`Admin role`，完成用户创建：<br>![](https://s1.ax1x.com/2023/04/22/p9ZPhfs.png)
 
 
 
-#### 2.Zabbix常见的名词定义
+### 2.Zabbix常见的名词定义
 
 >
 >- host（主机）- 要通过 IP/DNS 监控的联网设备。
@@ -240,13 +240,13 @@ sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 >......
 >
 >引用自：`https://www.zabbix.com/documentation/6.0/zh/manual/definitions`
-[![p9ZkyOx.png](https://s1.ax1x.com/2023/04/22/p9ZkyOx.png)](https://imgse.com/i/p9ZkyOx)
+![](https://s1.ax1x.com/2023/04/22/p9ZkyOx.png)
 
 
 
-#### 3.添加被监控主机
+### 3.添加被监控主机
 
-##### 通过SNMP协议添加
+#### 通过SNMP协议添加
 
 以添加华为交换机SNMP V2为例：
 
@@ -254,52 +254,52 @@ sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 
 - 在`配置→主机`可查看已添加的主机，点击创建主机来新增一台主机：<br>
 
-[![p9ZYitJ.png](https://s1.ax1x.com/2023/04/22/p9ZYitJ.png)](https://imgse.com/i/p9ZYitJ)
+![](https://s1.ax1x.com/2023/04/22/p9ZYitJ.png)
 
-- 输入主机名称，选择模板`Huawei VRP by SNMP`，通过SNMP添加接口，填写正确的`IP地址`、`SNMP版本`、`SNMP团体名`：<br>[![p9ZNv6I.png](https://s1.ax1x.com/2023/04/23/p9ZNv6I.png)](https://imgse.com/i/p9ZNv6I)
+- 输入主机名称，选择模板`Huawei VRP by SNMP`，通过SNMP添加接口，填写正确的`IP地址`、`SNMP版本`、`SNMP团体名`：<br>![](https://s1.ax1x.com/2023/04/23/p9ZNv6I.png)
 
-- 填写无误后，点击`添加`，可在主机列表中看到新添加的主机：<br>[![p9ZHrGD.png](https://s1.ax1x.com/2023/04/23/p9ZHrGD.png)](https://imgse.com/i/p9ZHrGD)
+- 填写无误后，点击`添加`，可在主机列表中看到新添加的主机：<br>![](https://s1.ax1x.com/2023/04/23/p9ZHrGD.png)
 
-  - ![icon_zbx_gray.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_gray.png) - 表示主机状态尚未建立，尚未发生监控指标检查
-  - ![icon_zbx_green.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_green.png) - 表示主机可用，监控指标检查已成功
-  - ![icon_zbx_red.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_red.png) - 表示主机不可用，监控指标检查失败（将鼠标光标移动到图标上以查看错误消息)。可能是由于接口凭证不正确造成了通信问题。
+  - ![](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_gray.png) - 表示主机状态尚未建立，尚未发生监控指标检查
+  - ![](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_green.png) - 表示主机可用，监控指标检查已成功
+  - ![](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_red.png) - 表示主机不可用，监控指标检查失败（将鼠标光标移动到图标上以查看错误消息)。可能是由于接口凭证不正确造成了通信问题。
 
   
 
-##### 通过Zabbix Agent添加
+#### 通过Zabbix Agent添加
 
 以添加Windows系统为例：
 
 - 访问官网`https://www.zabbix.com/cn/download_agents`选择对应版本的Zabbix Agent<br>
 
-[<img src="https://s1.ax1x.com/2023/04/23/p9ZsuY6.png" alt="p9ZsuY6.png" style="zoom:63%;" />](https://imgse.com/i/p9ZsuY6)
+<img src="https://s1.ax1x.com/2023/04/23/p9ZsuY6.png" alt="p9ZsuY6.png" style="zoom:63%;" />
 
 - 下载Zabbix Agent安装包，进行安装：<br>
 
-[[<img src="https://s1.ax1x.com/2023/04/23/p9Z2PsS.png" alt="p9Z2PsS.png" style="zoom:63%;" />](https://imgse.com/i/p9Z2PsS)
+[<img src="https://s1.ax1x.com/2023/04/23/p9Z2PsS.png" alt="p9Z2PsS.png" style="zoom:63%;" />
 
 填写正确的服务器信息，下一步
 
-- Zabbix Agent安装完成：<br>[<img src="https://s1.ax1x.com/2023/04/23/p9ZsonJ.png" alt="p9ZsonJ.png" style="zoom:63%;" />](https://imgse.com/i/p9ZsonJ)
+- Zabbix Agent安装完成：<br><img src="https://s1.ax1x.com/2023/04/23/p9ZsonJ.png" alt="p9ZsonJ.png" style="zoom:63%;" />
 
-- 在Zabbix服务器Web后台添加主机，方法同上：<br>[![p9Z28o9.png](https://s1.ax1x.com/2023/04/23/p9Z28o9.png)](https://imgse.com/i/p9Z28o9)
+- 在Zabbix服务器Web后台添加主机，方法同上：<br>![](https://s1.ax1x.com/2023/04/23/p9Z28o9.png)
 
 
 
-#### 4.新建监控项
+### 4.新建监控项
 
-##### 以新建华为设备为例：
+#### 以新建华为设备为例：
 
-- 在`配置→主机`选择需要新建监控项的主机：<br>[![p9ZfLlt.png](https://s1.ax1x.com/2023/04/23/p9ZfLlt.png)](https://imgse.com/i/p9ZfLlt)
+- 在`配置→主机`选择需要新建监控项的主机：<br>![](https://s1.ax1x.com/2023/04/23/p9ZfLlt.png)
 
-- 点击创建监控项：<br>[![p9Z2HWq.png](https://s1.ax1x.com/2023/04/23/p9Z2HWq.png)](https://imgse.com/i/p9Z2HWq)
+- 点击创建监控项：<br>![](https://s1.ax1x.com/2023/04/23/p9Z2HWq.png)
 
-- 输入所需监控项的`名称`、`键值`、`SNMP OID`：<br>[![p9ZRl1P.png](https://s1.ax1x.com/2023/04/23/p9ZRl1P.png)](https://imgse.com/i/p9ZRl1P)
+- 输入所需监控项的`名称`、`键值`、`SNMP OID`：<br>![](https://s1.ax1x.com/2023/04/23/p9ZRl1P.png)
 
 
 监控项的`键值`、`OID`可在华为官网`https://info.support.huawei.com/info-finder/tool/zh/enterprise/mib`查询，如下图为交换机CPU占用率的MIB信息：
 
-[![p9ZRbAH.png](https://s1.ax1x.com/2023/04/23/p9ZRbAH.png)](https://imgse.com/i/p9ZRbAH)
+![](https://s1.ax1x.com/2023/04/23/p9ZRbAH.png)
 
 - 可通过以下Linux命令对OID进行测试：
 
@@ -307,17 +307,17 @@ sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
   snmpwalk -v 2c -c 团体名 设备IP  OID
   ```
 
-  [<img src="https://s1.ax1x.com/2023/04/23/p9ZWHMV.png" alt="p9ZWHMV.png" style="zoom: 50%;" />](https://imgse.com/i/p9ZWHMV)
+  <img src="https://s1.ax1x.com/2023/04/23/p9ZWHMV.png" alt="p9ZWHMV.png" style="zoom: 50%;" />
 
 返回值为1，即CPU占用率为1%
 
-- 测试无误后点添加即可添加监控项<br>[![p9ZfiqO.png](https://s1.ax1x.com/2023/04/23/p9ZfiqO.png)](https://imgse.com/i/p9ZfiqO)
+- 测试无误后点添加即可添加监控项<br>![](https://s1.ax1x.com/2023/04/23/p9ZfiqO.png)
 
 
 
-#### 5.新建触发器
+### 5.新建触发器
 
-- 在`配置→主机`选择需要新建触发器的主机，点击旁边的触发器 ，然后点击创建触发器：<br>[<img src="https://s1.ax1x.com/2023/04/23/p9Z4Jvq.png" alt="p9Z4Jvq.png" style="zoom:70%;" />](https://imgse.com/i/p9Z4Jvq)
+- 在`配置→主机`选择需要新建触发器的主机，点击旁边的触发器 ，然后点击创建触发器：<br><img src="https://s1.ax1x.com/2023/04/23/p9Z4Jvq.png" alt="p9Z4Jvq.png" style="zoom:70%;" />
 
 - 输入触发器表达式，表达式非常灵活，可以利用它创建复杂的逻辑表达关系。
 
@@ -329,19 +329,19 @@ sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
 
 
 
-#### 6.编辑仪表版
+### 6.编辑仪表版
 
 可通过编辑仪表盘，自定义仪表盘显示的监控内容
 
-[![p9Z5zTO.png](https://s1.ax1x.com/2023/04/23/p9Z5zTO.png)](https://imgse.com/i/p9Z5zTO)
+![](https://s1.ax1x.com/2023/04/23/p9Z5zTO.png)
 
-#### 7.主机监控项图表
+### 7.主机监控项图表
 
-在`检测→主机`选择需要查看图标的主机，点击旁边的`图形` ，可根据不同时间跨度查看主机监控项的图表：[![p9Z5XOx.png](https://s1.ax1x.com/2023/04/23/p9Z5XOx.png)](https://imgse.com/i/p9Z5XOx)
+在`检测→主机`选择需要查看图标的主机，点击旁边的`图形` ，可根据不同时间跨度查看主机监控项的图表：![](https://s1.ax1x.com/2023/04/23/p9Z5XOx.png)
 
 
 
-### 七、资料推荐及Q&A
+## 七、资料推荐及Q&A
 
 - 官方文档（强推）`https://www.zabbix.com/documentation/6.0/zh/`
 
