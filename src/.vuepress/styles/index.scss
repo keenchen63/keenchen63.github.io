@@ -1,18 +1,32 @@
 // place your custom styles here
 .vp-article-title {
-    font-weight: 800;
+    font-weight: 700;
     font-size: x-large;
 }
 
 .vp-article-excerpt {
     font-size: smaller;
-    color: rgb(92, 92, 102);
+    color: rgb(88, 88, 98);
 }
 
 .theme-hope-content {
-    color: rgb(92, 92, 102);
+    color: rgb(88, 88, 98);
+    font-size: medium;
 }
 
 .vp-blog-type-button .icon-wrapper.active {
     background: rgb(204, 207, 212);
+}
+
+.vp-page-title h1 {
+    font-size: x-large;
+    color: rgb(88, 88, 88);
+}
+
+.theme-hope-content h2 {
+    font-size: large;
+}
+
+.vp-toc-header {
+    color: rgb(88, 88, 98);
 }
