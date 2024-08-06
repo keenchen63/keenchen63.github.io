@@ -19,7 +19,7 @@ export default hopeTheme({
 
   docsDir: "src",
 
-  darkmode: "auto",
+  darkmode: "switch",
   // 导航栏
   navbar,
 
