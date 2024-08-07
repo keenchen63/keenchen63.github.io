@@ -1,3 +1,14 @@
+---
+isOriginal: true
+date: 2024-05-18
+category: "服务器虚拟化"
+tag: [
+   "PVE LinuxOS安装",
+   "openEuler",
+]
+cover: https://www.openeuler.org/assets/logo.c7c57318.svg
+---
+
 # Proxmox VE 安装 openEuler 24.03
 
 
@@ -15,6 +26,7 @@
     - 用途：在安装过程中需要连接到网络，从在线存储库中下载和安装软件包。
     - 适用场景：适用于网络环境良好的场合，可以灵活选择和安装最新的软件包和组件。
 
+<!-- more -->
 
 - Offline Everything ISO（离线全量 ISO）：
     - 特点：这是一个较大的 ISO 镜像，包含 openEuler 操作系统的所有软件包和组件。
