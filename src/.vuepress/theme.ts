@@ -101,7 +101,7 @@ export default hopeTheme({
     // },
     comment: {
       provider: "Waline",
-      serverURL: "https://blog-waline-gsi6bf4f5-keens-projects-c13ede7c.vercel.app",
+      serverURL: "https://waline.okeen.top",
     },
 
     components: {
