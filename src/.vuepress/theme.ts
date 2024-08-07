@@ -99,6 +99,10 @@ export default hopeTheme({
     //   provider: "Waline",
     //   serverURL: "https://waline-comment.vuejs.press",
     // },
+    comment: {
+      provider: "Waline",
+      serverURL: "https://blog-waline-gsi6bf4f5-keens-projects-c13ede7c.vercel.app",
+    },
 
     components: {
       components: ["Badge", "VPCard"],
@@ -106,6 +110,7 @@ export default hopeTheme({
 
     // 此处开启了很多功能用于演示，你应仅保留用到的功能。
     mdEnhance: {
+      footnote: true,
       align: true,
       attrs: true,
       codetabs: true,
