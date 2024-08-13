@@ -6,7 +6,7 @@ tag: [
    "PVE LinuxOS安装",
    "openEuler",
 ]
-cover: https://www.openeuler.org/assets/logo.c7c57318.svg
+cover: /imgs/pve_install_openEulerOS/logo.D1Si0Lp6.svg
 ---
 
 # Proxmox VE 安装 openEuler 24.03
