@@ -1,339 +1,253 @@
-<img src="https://jumpserver.org/images/logo/logo-dark-JumpServer.svg" style="width: 50%; height: auto;" /> 
+---
+isOriginal: true
+date: 2024-07-23
+category: "网络"
+tag: [
+   "JumpServer",
+   "运维",
+]
+cover: "https://jumpserver.org/images/logo/logo-dark-JumpServer.svg"
+---
 
-<br/>
 
-# 基础介绍及安装部署
+# JumpServer 介绍及安装部署
 
-<div style="text-align:right">主讲人: 陈文杰</br>日期: 2024-7-23 </div>
+## JumpServer 介绍
 
-### 一、为什么需要堡垒机
+### 为什么需要堡垒机
 
 以更安全的⽅式管控和登录各种类型的资产。
 
-<img src="https://s21.ax1x.com/2024/07/10/pkhpWm4.png" alt="pkhpWm4.png" border="0" />
+![](/imgs/jumpserver_guide/img02.png)
 
-### 二、什么是Zabbix
+堡垒机的 4A 能力
 
-> Zabbix 是一个**企业级**的**开源分布式**网络监控解决方案；可用于监视各种IT设备，包括服务器、网络设备、数据库、应用程序等。
->
-> - 企业级：Zabbix具有可扩展性、高可用性、安全性、可定制性和易于使用和管理等特点，这使得它成为了一种适合大型企业和组织使用的监控系统。
-> - 开源：Zabbix是一个开源的监控系统，意味着它是免费的，并且源代码是公开的，可以自由地使用、修改和分发。
-> - 分布式：Zabbix支持分布式监控，这意味着可以将监控负载分散到多个Zabbix服务器上，从而实现更高的可扩展性和容错性。
-
-<img src="https://s1.ax1x.com/2023/04/22/p9VcqII.jpg" alt="Banner" style="zoom:80%;float:left;" />
+- 身份鉴别 Authentication &nbsp;&nbsp;&nbsp; <HopeIcon icon="right-long"/> &nbsp;&nbsp;&nbsp; 防⽌ **身份冒⽤** 和 **复⽤**
+- 授权控制 Authorization &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <HopeIcon icon="right-long"/> &nbsp;&nbsp;&nbsp; 防止内部**误操作**和**权限滥用**
+- 账号管理 Accounting &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <HopeIcon icon="right-long"/> &nbsp;&nbsp;&nbsp; 人员和资产的管理
+- 安全审计 Auditing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <HopeIcon icon="right-long"/> &nbsp;&nbsp;&nbsp; **追溯**的保障和**事故分析**的依据
 
 
+### 什么是 JumpServer
 
-### 三、Zabbix的监控对象
+JumpServer 是广受欢迎的开源堡垒机，是符合 4A 规范的专业运维安全审计系统。JumpServer 堡垒机帮助企业以更安全的方式管控和登录各种类型的资产，包括：
 
-- 数据库：    MySQL、MariaDB、Oracle、SQL Server		agent
-- 应用程序：Nginx、Apache、IIS                                            agent
-
-------
-
-- 虚拟化：    VMWare、KVM、Docker、K8s                         agent
-
-- 操作系统：Linux、Windows、macOS                                 agent
-
-----
-
-- 硬件：        服务器、存储                                                        IPMI
-
-- 网络设备：交换机、路由器、防火墙                                     SNMP
+| 类型       | 内容                                                        |
+|------------|-------------------------------------------------------------|
+| SSH        | Linux / Unix / 网络设备 等                                   |
+| Windows    | Web 方式连接 / 原生 RDP 连接                                 |
+| 数据库     | MySQL / MariaDB / PostgreSQL / Oracle / SQLServer / ClickHouse 等 |
+| NoSQL      | Redis / MongoDB 等                                           |
+| GPT        | ChatGPT 等                                                   |
+| 云服务     | Kubernetes / VMware vSphere 等                               |
+| Web 站点   | 各类系统的 Web 管理后台                                      |
+| 应用       | 通过 Remote App 连接各类应用                                 |
 
 
 
-### 四、Zabbix基本架构
-
-<img src="https://s1.ax1x.com/2023/04/22/p9VcOit.png" alt="架构图" style="width:60%;" /></br>
-
-- Zabbix Server：整个 Zabbix 软件的核心程序，负责执行监控数据的主动轮询和被动获取，向用户发送通知；
-- Zabbix Web：为了从任何地方和任何平台轻松访问，提供的基于 Web 的前端界面。
-- Database：数据库，用于存储Zabbix 收集的所有配置信息以及数据。
-- Zabbix Proxy：可代Server 收集Agent的数据，从而分散单个 Zabbix Server 的负载，在Zabbix部署中，Proxy 为可选项；
-- Zabbix Agent：部署在被监控目标上，以主动监控本地资源等信息，并将收集到的数据上报给Zabbix Server。
+![JumpServer的能力范围](/imgs/jumpserver_guide/img01.png)
 
 
+| 身份鉴别 Authentication | 授权控制 Authorization | 账号管理 Accounting | 安全审计 Auditing        |
+|--------------------------|------------------------|----------------------|--------------------------|
+| 登录认证                 | 多维度授权 | 账号列表             | 会话审计                 |
+| MFA认证                   | 资产授权               | 账号模板             | 录像审计                 |
+| 登录复核                 | 动作授权               | 账号推送             | 命令审计                 |
+| 登录限制                 | 时间授权               |                      | 文件传输                 |
+|                          | 命令过滤               |                      | 实时监控                 |
+|                          | 文件管理               |                      | 登录日志                 |
+|                          | 协议授权               |                      | 操作日志                 |
 
-### 五、安装Zabbix
 
-#### 1.安装要求
+![UI展示](/imgs/jumpserver_guide/img03.png)
 
-- 硬件配置
+### JumpServer 系统架构
+JumpServer 采用分层架构，分别是负载层、接入层、核心层、数据层、存储层。
 
-| 操作系统      | 架构        | Linux 内核 | 软件要求                              | 最小化硬件配置        |
-| :-------------: | :-----------: | :----------: | :-------------------------------------: | :---------------------: |
-| linux/amd64   | x86_64      | >= 4.0     | wget curl tar gettext iptables python | 2Core/8GB RAM/60G HDD |
-| linux/arm64   | aarch64     | >= 4.0     | wget curl tar gettext iptables python | 2Core/8GB RAM/60G HDD |
-| linux/loong64 | loongarch64 | == 4.19    | wget curl tar gettext iptables python | 2Core/8GB RAM/60G HDD |
+应用架构图如下：
 
-- 操作系统
-  - 支持主流 Linux 发行版本（基于 Debian / RedHat，包括国产操作系统）
+![](/imgs/jumpserver_guide/img04.png)
 
-#### 2.安装Zabbix
 
-##### Linux系统二进制包安装
+其中，多个组件间大致的架构如下图所示：
 
-进入Zabbix官网`https://www.zabbix.com/cn/download`，选在Zabbix版本及服务器平台等信息；
+![](/imgs/jumpserver_guide/img05.png)
 
-安装Zabbix，以Ubuntu 22.04 + MySQL + Nginx 为例
+## JumpServer 安装部署
+支持 Linux单机部署、Linux集群部署、k8s模式部署
+### 环境要求
 
-- 在服务器/虚拟化中安装好Ubuntu 22.04系统，此不展开，可参考企微微盘高建兴老师的`Linux基础知识分享`；
+- 支持主流 Linux 发行版本（基于 Debian / RedHat，包括国产操作系统）
 
-- 添加Zabbix的apt/yum软件仓库源：
+| 操作系统       | 架构     | Linux 内核 | 软件要求                            | 最小化硬件配置               |
+|----------------|----------|------------|-------------------------------------|------------------------------|
+| linux/amd64    | x86_64   | >= 4.0     | wget, curl, tar, gettext, iptables, python | 2 Core / 8GB RAM / 60G HDD   |
+| linux/arm64    | aarch64  | >= 4.0     | wget, curl, tar, gettext, iptables, python | 2 Core / 8GB RAM / 60G HDD   |
 
-  ```shell
-  # 下载Zabbix软件仓库源的deb包
-  wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
-  # 安装deb包，实际作用为在 `/etc/apt/sources.list.d/` 路径下添加Zabbix软件仓库源
-  sudo dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
-  # 更新APT软件包索引
-  sudo apt update
-  ```
-  
-  Zabbix官方软件仓库源为境外服务器，若执行`apt update`后长时间无法完成，可将官方源地址换成国内镜像源；
-  
-  常见镜像源：阿里云、华为云、南京大学等
-  
-  
-  
-- 使用apt/yum包管理工具安装Zabbix server，Web前端，agent：
+### 部署演示（Linux单机部署）
 
-  ```shell
-  # 执行 apt install 命令，安装所需软件
-  sudo apt install zabbix-server-mysql zabbix-frontend-php zabbix-nginx-conf zabbix-sql-scripts zabbix-agent
-  ```
-  
-  
-  
-- 安装并初始化 MySQL 数据库：
+1.从官网[https://community.fit2cloud.com/#/products/jumpserver/downloads](https://community.fit2cloud.com/#/products/jumpserver/downloads)下载最新的离线安装包，并上传至部署服务器``` /opt ``` 目录；
 
-  ```shell
-  # 执行 apt install 命令，安装MySQL
-  sudo apt install mysql-server
-  # 启动MySQL进程，并设置开机自启
-  sudo systemctl start mysql
-  sudo systemctl enable mysql
-  # 设置MySQL数据库密码
-  mysql -uroot
-  mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Reeko@123';
-  mysql> exit;
-  ```
+2.解压缩;
+``` bash
+# 进入 /opt 目录
+cd /opt
 
-  
+# 解压缩安装包
+tar -xf jumpserver-ce-v4.0.2-x86_64.tar.gz
 
-- 创建Zabbix所需的数据库和数据库用户：
-
-  ```mysql
-  mysql -uroot -p
-  输入数据库root用户密码
-  create database zabbix character set utf8mb4 collate utf8mb4_bin;    #创建zabbix数据库
-  create user zabbix@localhost identified by 'Reeko@123';              #设置zabbix用户密码
-  grant all privileges on zabbix.* to zabbix@localhost;                #设置用户权限
-  set global log_bin_trust_function_creators = 1;             #更改系统变量以允许导入初始化数据
-  exit;
-  ```
-
-  
-
-- 导入Zabbix初始架构和数据：
-
-  ```shell
-  # 导入server.sql.gz初始架构和数据至MySQL的zabbix数据库中
-  # 执行命令后需要输入数据库密码，视设备性能不同，需等待1-5分钟
-  zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
-  # 导入成功后，将数据库系统变量 log_bin_trust_function_creators 改回0
-  mysql -uroot -p
-  输入数据库root用户密码
-  set global log_bin_trust_function_creators = 0;
-  exit;
-  ```
-
-  
-
-- 配置Zabbix Server的数据库及Web前端服务的相关参数：
-
-  ```shell
-  #使用vim/nano等文本编辑器打开数据库配置文件
-  nano /etc/zabbix/zabbix_server.conf
-  #找到DBPassword=，设置对应数据库密码并保存
-  DBPassword=Reeko@123
-  
-  #使用vim/nano等文本编辑器打开Nginx配置文件
-  nano /etc/zabbix/nginx.conf
-  #设置端口号'listen' 和 域名'server_name' 并保存
-  listen 23461;
-  server_name example.com;
-  ```
-
-  
-
-- 启动Zabbix进程，并为它们设置开机自启：
-
-  ```shell
-  # 启动Zabbix进程，并设置开机自启
-  sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
-  sudo systemctl enable zabbix-server zabbix-agent nginx php8.1-fpm       
-  ```
-
-  
-
-- 浏览器打开Web界面 `IP:Port`，完成初始化向导：
-
-<img src="https://s1.ax1x.com/2023/04/22/p9VxIl8.png" alt="p9VxIl8.png" style="zoom: 40%;float:left;" />
-
-若Web初始化界面无法选择中文，原因是服务器系统没有安装中文语言包
-
-```shell
-# 执行 apt install 安装中文语言包
-sudo apt install language-pack-zh-hans
-#重启Zabbix进程
-sudo systemctl restart zabbix-server zabbix-agent nginx php8.1-fpm
+# 进入安装包目录
+cd jumpserver-ce-v4.0.2-x86_64
 ```
 
-<img src="https://s1.ax1x.com/2023/04/22/p9VzWB4.png" alt="p9VzWB4.png" style="zoom:55%;float:left;" />
+3.安装；
+``` bash
+# 安装
+./jmsctl.sh install
 
-在Web页面完成初始化向导，安装完成。
+# 启动
+./jmsctl.sh start
+```
 
-##### Docker容器安装
+4.访问登录
 
-  时间有限，不展开，可参考官方文档。
-
-
-
-### 六、配置Zabbix
-
-#### 1.登录和配置用户
-
-- 使用超级管理员`Admin`及默认密码：`zabbix`登录<br>[![p9ZCjQP.png](https://s1.ax1x.com/2023/04/22/p9ZCjQP.png)](https://imgse.com/i/p9ZCjQP)
-- 在`管理 → 用户` 可查看用户信息，点击创建用户：<br>[![p9ZHUq1.png](https://s1.ax1x.com/2023/04/23/p9ZHUq1.png)](https://imgse.com/i/p9ZHUq1)
-- 输入用户名、密码，选择加入`Zabbix administrators`管理员群组:<br>[![p9ZPg0S.png](https://s1.ax1x.com/2023/04/22/p9ZPg0S.png)](https://imgse.com/i/p9ZPg0S)
-- 在权限页，选择`Admin role`，完成用户创建：<br>[![p9ZPhfs.png](https://s1.ax1x.com/2023/04/22/p9ZPhfs.png)](https://imgse.com/i/p9ZPhfs)
-
-
-
-#### 2.Zabbix常见的名词定义
-
+>地址: http://<JumpServer服务器IP地址>:<端口默认80>
 >
->- host（主机）- 要通过 IP/DNS 监控的联网设备。
->- host group（主机组）- 主机的逻辑分组。
->- item（监控项） - 你想要接收的主机的特定数据，一个度量/指标数据。
->- trigger（触发器） - 一个被用于定义问题阈值的逻辑表达式。 当接收到的数据高于阈值时，触发器从 'Ok' 变成 'Problem' 状态。
->- event（事件） - 一次发生的需要注意的事情，例如 触发器状态改变、自动发现agent。
->- action（动作） - 对事件作出反应的预先定义的方法。
->- media（媒介） - 发送告警通知的渠道；传输媒介。
->- template（模板） - 可以应用于主机的一组实体集 （包含监控项、触发器、图表、低级别自动发现规则、web场景等）。
+>用户名: admin
 >
->......
->
->引用自：`https://www.zabbix.com/documentation/6.0/zh/manual/definitions`
-[![p9ZkyOx.png](https://s1.ax1x.com/2023/04/22/p9ZkyOx.png)](https://imgse.com/i/p9ZkyOx)
+>密码: ChangeMe
+
+
+## JumpServer管理员手册
+该章节包含JumpServer堡垒机**管理员**基础功能配置
+
+### 页面说明
+
+![](/imgs/jumpserver_guide/img06.png)
+
+- **控制台**：管理员操作入口，通过控制台，管理员可进行用户管理、资产管理、应用管理、账号管理、权限管理、访问控制等配置。
+- **审计台**：审计员操作入口，通过审计台，审计员可查看各会话的连接详细信息及各类型日志,组织审计员只能够看到该组织下的相关数据。
+- **工作台**：普通用户操作入口，通过工作台，普通用户可以通过工作台看到自己有权限操作运维的资产。
+
+### 用户管理
+1. 创建用户
+  - 进入``` 控制台 ```
+  - 点击``` 用户管理 ``` - ``` 用户列表 ``` 页面的``` 创建 ```按钮，进入用户详细创建页面。
+
+![](/imgs/jumpserver_guide/img08.png)
+
+| 参数        | 说明                                                                                                                                               |
+|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 名称        | 用户识别名称，可重复。                                                                                                                             |
+| 用户名      | 登录 JumpServer 的登录账号，不可重复。                                                                                                              |
+| 邮箱        | 登录账号对应的邮箱地址，不可重复。                                                                                                                  |
+| 用户组      | 将用户按组进行管理，主要用于资产授权，当某个资产对某个用户组授权时，这个用户组所有的用户都对这个资产有相应的权限。                                     |
+| 密码策略    | 密码在管理员创建用户的过程中可以自主设置；也可以生成密码连接，通过邮件发送给用户。JumpServer 会发送一条“设置用户密码”的邮件到所填写的用户邮箱。         |
+| MFA         | 多因子身份认证。启用 MFA 后，用户登录时需输入用户名、密码（第一安全要素）及 MFA 设备的动态验证码（第二安全要素），提高账户安全保护。                    |
+| 来源        | 指定该用户的来源，如手动创建则为“数据库”，如从 LDAP 中导入则为 “LDAP”。                                                                           |
+| 系统角色    | 系统角色决定用户在系统层面的权限（如系统管理员、审计员、用户/其他自定义角色）。                                                                      |
+| 组织角色    | 组织角色决定用户在组织层面的权限（如组织管理员、审计员、用户/其他自定义角色）。                                                                      |
+| 激活        | 表示用户状态是否正常可登录，非激活状态用户不可登录。                                                                                                |
+| 失效日期    | 指用户可进行登录的最后日期，失效后不可登录。                                                                                                        |
+| 手机        | 非必填项，配置用户的手机号，用于 “MFA” 手机短信的接收。                                                                                             |
+| 备注        | 非必填项，管理员配置该用户的备注信息。                                                                                                              |
+
+2. 创建用户组
+  - 进入``` 控制台 ```
+  - 点击``` 用户管理 ``` - ``` 用户组 ``` 页面的``` 创建 ```按钮，进入用户组创建页面。
+
+![](/imgs/jumpserver_guide/img09.png)
+
+| 参数   | 说明                     |
+|--------|--------------------------|
+| 名称   | 用户组名称。              |
+| 用户   | 将用户添加到该用户组中。  |
 
 
 
-#### 3.添加被监控主机
+### 资产管理
+1. 手动创建资产
+  - 进入``` 控制台 ```
+  - 点击``` 资产管理 ``` - ``` 资产列表 ``` 进入页面
+  - 点击页面左上角的``` 创建 ```按钮，选择资产类型（以 Linux 主机为例），进入资产创建页面，填写资产详细信息。
 
-##### 通过SNMP协议添加
+![](/imgs/jumpserver_guide/img07.png)
 
-以添加华为交换机SNMP V2为例：
-
-- 交换机端正确配置SNMP
-
-- 在`配置→主机`可查看已添加的主机，点击创建主机来新增一台主机：<br>
-
-[![p9ZYitJ.png](https://s1.ax1x.com/2023/04/22/p9ZYitJ.png)](https://imgse.com/i/p9ZYitJ)
-
-- 输入主机名称，选择模板`Huawei VRP by SNMP`，通过SNMP添加接口，填写正确的`IP地址`、`SNMP版本`、`SNMP团体名`：<br>[![p9ZNv6I.png](https://s1.ax1x.com/2023/04/23/p9ZNv6I.png)](https://imgse.com/i/p9ZNv6I)
-
-- 填写无误后，点击`添加`，可在主机列表中看到新添加的主机：<br>[![p9ZHrGD.png](https://s1.ax1x.com/2023/04/23/p9ZHrGD.png)](https://imgse.com/i/p9ZHrGD)
-
-  - ![icon_zbx_gray.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_gray.png) - 表示主机状态尚未建立，尚未发生监控指标检查
-  - ![icon_zbx_green.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_green.png) - 表示主机可用，监控指标检查已成功
-  - ![icon_zbx_red.png](https://www.zabbix.com/documentation/6.0/assets/en/manual/quickstart/icon_zbx_red.png) - 表示主机不可用，监控指标检查失败（将鼠标光标移动到图标上以查看错误消息)。可能是由于接口凭证不正确造成了通信问题。
-
-  
-
-##### 通过Zabbix Agent添加
-
-以添加Windows系统为例：
-
-- 访问官网`https://www.zabbix.com/cn/download_agents`选择对应版本的Zabbix Agent<br>
-
-[<img src="https://s1.ax1x.com/2023/04/23/p9ZsuY6.png" alt="p9ZsuY6.png" style="zoom:63%;" />](https://imgse.com/i/p9ZsuY6)
-
-- 下载Zabbix Agent安装包，进行安装：<br>
-
-[[<img src="https://s1.ax1x.com/2023/04/23/p9Z2PsS.png" alt="p9Z2PsS.png" style="zoom:63%;" />](https://imgse.com/i/p9Z2PsS)
-
-填写正确的服务器信息，下一步
-
-- Zabbix Agent安装完成：<br>[<img src="https://s1.ax1x.com/2023/04/23/p9ZsonJ.png" alt="p9ZsonJ.png" style="zoom:63%;" />](https://imgse.com/i/p9ZsonJ)
-
-- 在Zabbix服务器Web后台添加主机，方法同上：<br>[![p9Z28o9.png](https://s1.ax1x.com/2023/04/23/p9Z28o9.png)](https://imgse.com/i/p9Z28o9)
+| 参数       | 说明                                                                                           |
+|------------|------------------------------------------------------------------------------------------------|
+| 名称       | 必填项，该资产在 JumpServer 中的名称，与资产本身计算机名无关，不可重名。                          |
+| IP/主机    | 必填项，资产的真实 IP 或 VIP 或域名。允许重名。                                                    |
+| 资产平台   | 默认项，资产的资产平台，各个平台可以设置不同的字符编码及连接参数以及改密命令。                      |
+| 节点       | 必填项，该资产所属于的节点。                                                                     |
+| 协议组     | 必填项，资产访问时用到的协议，可选一个或多个。                                                    |
+| 账号列表   | 必填项，该资产的账号，可创建多个账号。账号与资产绑定。                                             |
+| 网域       | 可选项，针对某些跨网段资产，需要以网域网关（sshpass）为代理进行访问。                              |
+| 标签       | 可选项，给该资产添加的标签, 方便管理。                                                             |
+| 激活       | 必选项，该资产是否可使用。                                                                       |
 
 
+2. 通过 Excel 批量导入资产
+  - JumpServer 提供两种模板信息，csv 与 xlsx 
+  - 进入``` 控制台 ```
+  - 点击``` 资产管理 ``` - ``` 资产列表 ``` 点击资产分类进入具体的分类页面
+  - 首次导入资产，可点击资产列表的右上角导入按钮，下载导入模板后根据模板提示填写需要导入或更新的信息，填写完成后在导入页面导入文件即可。
 
-#### 4.新建监控项
+![](/imgs/jumpserver_guide/img10.png)
 
-##### 以新建华为设备为例：
+### 权限管理
+1. 授权简述
+  - 资产的授权规则通过三个维度确定用户拥有什么样的权限；
+  - 资产授权规则三个维度分别如下:
 
-- 在`配置→主机`选择需要新建监控项的主机：<br>[![p9ZfLlt.png](https://s1.ax1x.com/2023/04/23/p9ZfLlt.png)](https://imgse.com/i/p9ZfLlt)
+| 维度   | 说明                                                                                  |
+|--------|---------------------------------------------------------------------------------------|
+| 用户   | 用户维度主要包括用户与用户组（代表该用户组下所有的用户）                                |
+| 资产   | 资产维度主要包括资产、节点（资产组的概念，代表该节点下的所有资产）、账号（登录资产的账号）|
+| 动作   | 动作维度主要包括连接权限、上传下载权限、复制粘贴权限（仅支持SSH协议、RDP协议和VNC协议） |
 
-- 点击创建监控项：<br>[![p9Z2HWq.png](https://s1.ax1x.com/2023/04/23/p9Z2HWq.png)](https://imgse.com/i/p9Z2HWq)
 
-- 输入所需监控项的`名称`、`键值`、`SNMP OID`：<br>[![p9ZRl1P.png](https://s1.ax1x.com/2023/04/23/p9ZRl1P.png)](https://imgse.com/i/p9ZRl1P)
+2. 创建资产授权规则
+  - 进入``` 控制台 ```
+  - 点击``` 授权管理 ``` - ``` 资产授权 ``` 进入页面
+  - 点击``` 创建 ```按钮，进入资产授权创建页面
 
-监控项的`键值`、`OID`可在华为官网`https://info.support.huawei.com/info-finder/tool/zh/enterprise/mib`查询，<br>如下图为交换机CPU占用率的MIB信息：[![p9ZRbAH.png](https://s1.ax1x.com/2023/04/23/p9ZRbAH.png)](https://imgse.com/i/p9ZRbAH)
 
-- 可通过以下Linux命令对OID进行测试：
+**如示例图，创建了``` user组 ```用户授权``` /DEFAULT/Linux主机 ```节点的权限**
 
-  ```shell
-  snmpwalk -v 2c -c 团体名 设备IP  OID
-  ```
-
-  [<img src="https://s1.ax1x.com/2023/04/23/p9ZWHMV.png" alt="p9ZWHMV.png" style="zoom: 50%;" />](https://imgse.com/i/p9ZWHMV)
-
-返回值为1，即CPU占用率为1%
-
-- 测试无误后点添加即可添加监控项<br>[![p9ZfiqO.png](https://s1.ax1x.com/2023/04/23/p9ZfiqO.png)](https://imgse.com/i/p9ZfiqO)
+![](/imgs/jumpserver_guide/img11.png)
 
 
 
-#### 5.新建触发器
+| 参数       | 说明                                                                                                                                                       |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 名称       | 授权规则的名称。                                                                                                                                           |
+| 用户       | JumpServer 登录用户，即给该用户授权后续资产的连接或其它权限。                                                                                               |
+| 用户组     | JumpServer 登录用户组，即给该用户组授权后续资产的连接或其它权限。                                                                                           |
+| 资产       | 授权的资产，即用户需求连接的资产。                                                                                                                         |
+| 节点       | 授权的节点，即用户需求连接的资产组。                                                                                                                       |
+| 账号       | 授权资产登录的账号。                                                                                                                                       |
+|            | A. 所有账号：资产上添加的所有账号都授权；                                                                                                                   |
+|            | B. 指定账号：手动输入需要授权的账号名称；                                                                                                                   |
+|            | C. 手动输入：授权用户连接时自行输入用户名/密码；                                                                                                            |
+|            | D. 同名账户：授权用户连接时使用与用户同名的账号。                                                                                                           |
+| 协议       | A. 所有：所有协议均可使用;                                                                                                                                  |
+|            | B. 指定: 指定用户使用 SSH、SFTP、RDP 等协议。                                                                                                              |
+| 权限       | 授权的动作，即用户对资产可以做什么。                                                                                                                       |
+|            | 注：剪贴板权限控制目前仅支持 RDP/VNC 协议的连接。                                                                                                           |
+| 开始日期   | 该授权规则开始的时间，默认为该授权规则创建的时间。                                                                                                           |
+| 失效日期   | 该授权规则失效的时间。                                                                                                                                     |
+### 应用发布机部署
+留坑
 
-- 在`配置→主机`选择需要新建触发器的主机，点击旁边的触发器 ，然后点击创建触发器：<br>[<img src="https://s1.ax1x.com/2023/04/23/p9Z4Jvq.png" alt="p9Z4Jvq.png" style="zoom:70%;" />](https://imgse.com/i/p9Z4Jvq)
-
-- 输入触发器表达式，表达式非常灵活，可以利用它创建复杂的逻辑表达关系。
-
-  详细的表达式用法参考官方文档：`https://www.zabbix.com/documentation/6.0/zh/manual/config/triggers/expression`
-
-- 完成后，点击*添加*。新的触发器将会显示在触发器列表中。
+## JumpServer管理员手册
+该章节包含JumpServer堡垒机**审计员**基础操作
 
 
+留坑
 
-#### 6.编辑仪表版
-
-可通过编辑仪表盘，自定义仪表盘显示的监控内容[![p9Z5zTO.png](https://s1.ax1x.com/2023/04/23/p9Z5zTO.png)](https://imgse.com/i/p9Z5zTO)
-
-#### 7.主机监控项图表
-
-在`检测→主机`选择需要查看图标的主机，点击旁边的`图形` ，可根据不同时间跨度查看主机监控项的图表：[![p9Z5XOx.png](https://s1.ax1x.com/2023/04/23/p9Z5XOx.png)](https://imgse.com/i/p9Z5XOx)
+## JumpServer用户手册
+该章节包含JumpServer堡垒机**用户**基础操作
 
 
+留坑
 
-### 七、资料推荐及Q&A
-
-- 官方文档（强推）`https://www.zabbix.com/documentation/6.0/zh/`
-
-- Zabbix测试Demo：
-
-  ```shell
-  地址：http://cloud.keen1.top:23461
-  用户：Admin
-  密码：Reeko@123
-  ```
-
-- Zabbix镜像源：
-  - 南京大学镜像站`https://mirrors.nju.edu.cn/zabbix/`
-  - 阿里云镜像站`https://mirrors.aliyun.com/zabbix/`
-  - 华为云镜像站`https://repo.huaweicloud.com/zabbix/`
