@@ -19,7 +19,10 @@ export default hopeTheme({
 
   docsDir: "src",
 
-  darkmode: "switch",
+  // 深色模式
+  // darkmode: "switch",
+  darkmode: "toggle",
+
   // 导航栏
   navbar,
 
