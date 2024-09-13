@@ -1,10 +1,10 @@
 import { defineUserConfig } from "vuepress";
 import { viteBundler } from '@vuepress/bundler-vite'
-import { removeHtmlExtensionPlugin } from 'vuepress-plugin-remove-html-extension'
+// import { removeHtmlExtensionPlugin } from 'vuepress-plugin-remove-html-extension'
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  plugins: [removeHtmlExtensionPlugin()],
+  // plugins: [removeHtmlExtensionPlugin()],
   bundler: viteBundler({
     viteOptions: {},
     vuePluginOptions: {},
