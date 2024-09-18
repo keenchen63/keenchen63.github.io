@@ -57,8 +57,11 @@ ______
 **Linux**
 - 根据不同Linux系统，安装iPerf3
 ```bash
-dnf install iperf3 -y          ### 用于 RedHat/CentOS/openEuler
-apt-get install iperf3 -y      ### 用于 Debian/Ubuntu
+### 用于 RedHat/CentOS/openEuler
+dnf install iperf3 -y
+
+### 用于 Debian/Ubuntu
+apt-get install iperf3 -y
 ```
 - 运行iPerf3服务端
 ``` bash
@@ -141,9 +144,12 @@ ____
 **Linux**
 - 安装ethr
 ```bash
-wget https://github.com/microsoft/ethr/releases/latest/download/ethr_linux.zip      ### 下载软件包
-unzip ethr_linux.zip             ### 解压软件包
-cp ./ethr /usr/local/bin         ### 复制ethr至系统可执行文件目录/usr/local/bin
+### 下载软件包
+wget https://github.com/microsoft/ethr/releases/latest/download/ethr_linux.zip
+### 解压软件包
+unzip ethr_linux.zip
+### 复制ethr至系统可执行文件目录/usr/local/bin
+cp ./ethr /usr/local/bin
 ```
 - 运行ethr服务端
 ```bash
@@ -190,13 +196,17 @@ ethr -c <Server_IP> -d 5s        ### 测试TCP吞吐量，维持时间5秒
 以下为**Linux**系统下通过Docker容器运行Speedtest
 - 安装Docker环境
 ```bash
-sudo bash <(curl -sSL https://linuxmirrors.cn/docker.sh)      ### Docker 一键安装脚本
-sudo docker -v      ### 查看Docker版本
+### Docker 一键安装脚本
+sudo bash <(curl -sSL https://linuxmirrors.cn/docker.sh)
+### 查看Docker版本
+sudo docker -v
 ```
 - 运行Speedtest
 ```bash
-sudo docker pull ghcr.io/librespeed/speedtest:latest     ### 拉取Speedtest镜像
-sudo docker run -d --name=speedtest -p 80:80 ghcr.io/librespeed/speedtest:latest    ### 运行Speedtest容器，监听80端口 
+### 拉取Speedtest镜像
+sudo docker pull ghcr.io/librespeed/speedtest:latest
+### 运行Speedtest容器，监听80端口 
+sudo docker run -d --name=speedtest -p 80:80 ghcr.io/librespeed/speedtest:latest
 ```
 
 #### 客户端
