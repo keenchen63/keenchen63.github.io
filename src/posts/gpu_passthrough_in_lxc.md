@@ -8,6 +8,7 @@ tag: [
    "GPU虚拟化",
 ]
 cover: /imgs/gpu_passthrough_in_lxc/0121131913.jpg
+sidebar: false
 ---
 
 # ProxmoxVE GPU 直通 LXC 容器方案

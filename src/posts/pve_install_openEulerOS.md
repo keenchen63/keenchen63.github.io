@@ -7,6 +7,7 @@ tag: [
    "openEuler",
 ]
 cover: /imgs/pve_install_openEulerOS/logo.D1Si0Lp6.svg
+sidebar: false
 ---
 
 # Proxmox VE 安装 openEuler 24.03

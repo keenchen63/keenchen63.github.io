@@ -7,6 +7,7 @@ tag: [
    "运维监控",
 ]
 cover: "https://s1.ax1x.com/2023/04/22/p9Vg3Jx.png"
+sidebar: false
 ---
 
 # Zabbix 基础介绍及安装部署

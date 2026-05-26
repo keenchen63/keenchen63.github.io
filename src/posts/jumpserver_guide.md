@@ -7,6 +7,7 @@ tag: [
    "运维",
 ]
 cover: "https://jumpserver.org/images/logo/logo-dark-JumpServer.svg"
+sidebar: false
 ---
 
 

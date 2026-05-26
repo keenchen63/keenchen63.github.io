@@ -7,6 +7,7 @@ tag:
   - 推理部署
   - vLLM
   - LLM
+sidebar: false
 ---
 
 # 大模型推理部署思考与答疑
