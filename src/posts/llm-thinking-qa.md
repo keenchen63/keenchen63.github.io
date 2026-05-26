@@ -1,14 +1,3 @@
----
-isOriginal: true
-date: 2026-05-26
-category: "AI"
-tag:
-  - 大模型
-  - 推理部署
-  - vLLM
-  - LLM
----
-
 # 大模型推理部署思考与答疑
 
 本文用于连续记录近期关于大模型推理部署的思考和答疑。后续相关问题都追加到本文，不再按每个主题拆成新的文档。
@@ -524,7 +513,7 @@ PP = 1（未启用）
 
 **扩展知识**
 
-### TP：Tensor Parallel，张量并行
+#### TP：Tensor Parallel，张量并行
 
 TP 是把同一层里的大矩阵切到多张卡上。
 
@@ -563,7 +552,7 @@ TP 的特点：
 --tensor-parallel-size 8
 ```
 
-### PP：Pipeline Parallel，流水线并行
+#### PP：Pipeline Parallel，流水线并行
 
 PP 是按模型层切分，把不同层放到不同设备或节点。
 
@@ -604,7 +593,7 @@ vLLM 中可用：
 
 当前项目 GLM-5.1 两节点没有用 PP，而是用 DP。也就是说两台机器不是前后层关系，而是两个数据并行副本。
 
-### DP：Data Parallel，数据并行
+#### DP：Data Parallel，数据并行
 
 DP 是部署多个模型副本，每个副本处理不同请求。
 
@@ -651,7 +640,7 @@ vLLM 在线服务中常见参数：
 
 因此 DP=2 不表示单个请求跨两台机器共同推理；更常见的理解是有两个副本承接不同请求。低并发时可能只看到一个 rank 忙，高并发时两个 rank 都会被调度。
 
-### EP：Expert Parallel，专家并行
+#### EP：Expert Parallel，专家并行
 
 EP 主要用于 MoE（Mixture of Experts）模型。
 
@@ -693,7 +682,7 @@ vLLM 中常用：
 
 新版本 vLLM 还包含 Expert Parallel Load Balancer（EPLB）等能力，用于缓解专家冷热不均问题；是否可用取决于 vLLM 版本、硬件平台和模型结构。
 
-### TP / PP / DP / EP 如何组合？
+#### TP / PP / DP / EP 如何组合？
 
 可以把它们理解成不同维度的切分：
 
@@ -720,7 +709,7 @@ vLLM 中常用：
 | TP + PP + EP + DP | 超大 MoE 模型的大规模集群部署           |
 
 
-### vLLM 支持情况总结
+#### vLLM 支持情况总结
 
 
 | 并行方式             | vLLM 是否支持 | 备注                                                             |
